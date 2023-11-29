@@ -154,27 +154,81 @@
 ## Step Three: Add Web Content
 
 1. **Create an HTML File**
+   Inside the directory you created in the earlier step, create an HTML file using the following command. This HTML file will display a simple "Hello, World" message.
+
    - Command:
      ```bash
-     vim index.html
+     sudo vim index.html
      ```
+   - `sudo`: Executes the command with superuser privileges.
    - `vim index.html`: Opens the Vim editor to create or edit an `index.html` file.
    - **Purpose**: To add custom web content, such as a homepage.
 
+   **HTML Code to Copy:**
+   ```html
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>2420</title>
+       <style>
+           body {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               height: 100vh;
+               margin: 0;
+           }
+           h1 {
+               text-align: center;
+           }
+       </style>
+   </head>
+   <body>
+       <h1>Hello, World</h1>
+   </body>
+   </html>
+     
 ## Step Four: Server Block Configuration
 
 1. **Creating a Custom Server Block**
+   - Use this command to create and edit a new server block configuration file. This configuration tells Nginx how to handle incoming requests and serve your website.
+
    - Command:
      ```bash
-     vim /etc/nginx/sites-available/my-server
+     sudo vim /etc/nginx/sites-available/[my-server]
      ```
-   - `vim /etc/nginx/sites-available/my-server`: Opens the Vim editor to create or edit the server block configuration file.
+   - `sudo`: Executes the command with superuser privileges.
+   - Replace `[my-server]` with your file name.
+   - `vim /etc/nginx/sites-available/[my-server]`: Opens the Vim editor to create or edit the server block configuration file.
    - **Purpose**: To configure a server block for hosting websites.
+
+   **Server Block Sample Code:**
+   Replace `[your dir]` with the directory name you created in `/var/www`.
+   ```nginx
+   server {
+       listen 80 default_server;
+       listen [::]:80 default_server;
+       
+       root /var/www/[your dir];
+       
+       index index.html index.htm index.nginx-debian.html;
+       
+       server_name _;
+       
+       location / {
+           # First attempt to serve request as file, then
+           # as directory, then fall back to displaying a 404.
+           try_files $uri $uri/ =404;
+       }
+   }
+
 
 2. **Enable the Server Block**
    - Commands:
      ```bash
-     sudo ln -s /etc/nginx/sites-available/my-server /etc/nginx/sites-enabled/
+     sudo ln -s /etc/nginx/sites-available/[my-server] /etc/nginx/sites-enabled/
      sudo unlink /etc/nginx/sites-enabled/default
      ```
    - `sudo`: Executes the commands with superuser privileges.
