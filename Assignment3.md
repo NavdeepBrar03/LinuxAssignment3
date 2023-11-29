@@ -107,18 +107,18 @@
      ```bash
      sudo apt update
      ```
-   - `sudo`: Executes the command with superuser privileges.
-   - `apt update`: Updates the package list for the system.
-   - **Purpose**: To ensure the latest software and dependencies are available before installing Nginx.
+      - `sudo`: Executes the command with superuser privileges.
+      - `apt update`: Updates the package list for the system.
+      - **Purpose**: To ensure the latest software and dependencies are available before installing Nginx.
 
 2. **Install Nginx**
    - Command:
      ```bash
      sudo apt install nginx
      ```
-   - `sudo`: Executes the command with superuser privileges.
-   - `apt install nginx`: Installs the Nginx package.
-   - **Purpose**: To install Nginx as the web server on the system.
+      - `sudo`: Executes the command with superuser privileges.
+      - `apt install nginx`: Installs the Nginx package.
+      - **Purpose**: To install Nginx as the web server on the system.
 
 ## Step Two: Configure Nginx
 
@@ -128,28 +128,28 @@
      sudo systemctl enable nginx
      sudo systemctl start nginx
      ```
-   - `sudo`: Executes the commands with superuser privileges.
-   - `systemctl enable nginx`: Enables Nginx to start at boot.
-   - `systemctl start nginx`: Starts the Nginx service.
-   - **Purpose**: To ensure Nginx runs automatically upon system boot and starts running immediately.
+      - `sudo`: Executes the commands with superuser privileges.
+      - `systemctl enable nginx`: Enables Nginx to start at boot.
+      - `systemctl start nginx`: Starts the Nginx service.
+      - **Purpose**: To ensure Nginx runs automatically upon system boot and starts running immediately.
 
 2. **Navigate to Web Root**
    - Command:
      ```bash
      cd /var/www
      ```
-   - `cd /var/www`: Changes the current directory to Nginx's web root.
-   - **Purpose**: To access the default directory where web files are stored.
+      - `cd /var/www`: Changes the current directory to Nginx's web root.
+      - **Purpose**: To access the default directory where web files are stored.
 
 3. **Create a New Directory**
    - Command:
      ```bash
      sudo mkdir [dir]
      ```
-   - `sudo`: Executes the command with superuser privileges.
-   - `mkdir [dir]`: Creates a new directory.
-   - Replace `[dir]` with your directory name.
-   - **Purpose**: To create a specific directory for your website's files.
+      - `sudo`: Executes the command with superuser privileges.
+      - `mkdir [dir]`: Creates a new directory.
+      - Replace `[dir]` with your directory name.
+      - **Purpose**: To create a specific directory for your website's files.
 
 ## Step Three: Add Web Content
 
@@ -160,9 +160,9 @@
      ```bash
      sudo vim index.html
      ```
-   - `sudo`: Executes the command with superuser privileges.
-   - `vim index.html`: Opens the Vim editor to create or edit an `index.html` file.
-   - **Purpose**: To add custom web content, such as a homepage.
+      - `sudo`: Executes the command with superuser privileges.
+      - `vim index.html`: Opens the Vim editor to create or edit an `index.html` file.
+      - **Purpose**: To add custom web content, such as a homepage.
 
    **HTML Code to Copy:**
    ```html
@@ -199,10 +199,10 @@
      ```bash
      sudo vim /etc/nginx/sites-available/[my-server]
      ```
-   - `sudo`: Executes the command with superuser privileges.
-   - Replace `[my-server]` with your file name.
-   - `vim /etc/nginx/sites-available/[my-server]`: Opens the Vim editor to create or edit the server block configuration file.
-   - **Purpose**: To configure a server block for hosting websites.
+      - `sudo`: Executes the command with superuser privileges.
+      - Replace `[my-server]` with your file name.
+      - `vim /etc/nginx/sites-available/[my-server]`: Opens the Vim editor to create or edit the server block configuration file.
+      - **Purpose**: To configure a server block for hosting websites.
 
    **Server Block Sample Code:**
    Replace `[your dir]` with the directory name you created in `/var/www`.
@@ -231,10 +231,10 @@
      sudo ln -s /etc/nginx/sites-available/[my-server] /etc/nginx/sites-enabled/
      sudo unlink /etc/nginx/sites-enabled/default
      ```
-   - `sudo`: Executes the commands with superuser privileges.
-   - `ln -s`: Creates a symbolic link.
-   - `unlink`: Removes the existing symbolic link.
-   - **Purpose**: To enable the new server block configuration and disable the default.
+      - `sudo`: Executes the commands with superuser privileges.
+      - `ln -s`: Creates a symbolic link.
+      - `unlink`: Removes the existing symbolic link.
+      - **Purpose**: To enable the new server block configuration and disable the default.
 
 3. **Reload or Restart Nginx**
    - Commands:
@@ -242,10 +242,10 @@
      sudo systemctl reload nginx
      sudo systemctl restart nginx
      ```
-   - `sudo`: Executes the commands with superuser privileges.
-   - `systemctl reload nginx`: Reloads Nginx to apply new configurations.
-   - `systemctl restart nginx`: Restarts the Nginx service.
-   - **Purpose**: To apply the changes made to the Nginx configuration.
+      - `sudo`: Executes the commands with superuser privileges.
+      - `systemctl reload nginx`: Reloads Nginx to apply new configurations.
+      - `systemctl restart nginx`: Restarts the Nginx service.
+      - **Purpose**: To apply the changes made to the Nginx configuration.
 
 
 4. **Verify Nginx Configuration**
@@ -254,8 +254,8 @@
      ```bash
      sudo nginx -t
      ```
-   - `sudo`: Executes the command with superuser privileges.
-   - `nginx -t`: Tests the configuration files for syntax errors.
-   - **Purpose**: To ensure that there are no syntax errors in your Nginx configuration files.
+      - `sudo`: Executes the command with superuser privileges.
+      - `nginx -t`: Tests the configuration files for syntax errors.
+      - **Purpose**: To ensure that there are no syntax errors in your Nginx configuration files.
 
 
