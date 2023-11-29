@@ -7,7 +7,10 @@
      ```
      
      (replace `[username]` with your desired username).
-   - Add this user to the `sudo` group for administrative privileges: ```bash sudo usermod -aG sudo [username]```.
+   - Add this user to the `sudo` group for administrative privileges:
+      ```
+       bash sudo usermod -aG sudo [username]
+      ```
 
 2. **Set a password for the new user:**
    - You will be prompted to set a password during the user creation process.
