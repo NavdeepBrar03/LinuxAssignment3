@@ -2,7 +2,7 @@
 
 1. **Create a new user with `sudo` privileges:**
    - To create a new user, use:
-     ```
+     ```bash
        useradd -ms /bin/bash [user-name]
      ```
      
