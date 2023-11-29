@@ -1,7 +1,8 @@
 ## Step One: Create a New User
 
 1. **Create a new user with `sudo` privileges:**
-   - To create a new user, use: ```
+   - To create a new user, use:
+     ```bash
        useradd -ms /bin/bash [user-name]
      ```
      (replace `[username]` with your desired username).
