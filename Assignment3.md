@@ -10,7 +10,9 @@
      - `-m`: Creates a home directory for the new user.
      - `-s /bin/bash`: Sets `/bin/bash` as the user's login shell.
      - `[username]`: Placeholder for the desired username.
+     
      - **Purpose**: To create a new user with a home directory and bash as their default shell.
+   
    - Add this user to the `sudo` group for administrative privileges:
      ```bash
      sudo usermod -aG sudo [username]
@@ -20,6 +22,7 @@
      - `-aG`: Appends the user to the specified group.
      - `sudo`: Group name for granting admin privileges.
      - `[username]`: Placeholder for the username created earlier.
+       
      - **Purpose**: To give the new user administrative privileges.
 
 2. **Set a password for the new user:**
@@ -29,6 +32,7 @@
      ```
      - `passwd`: Command to set or change the user's password.
      - `[username]`: Placeholder for the username.
+       
      - **Purpose**: To securely set a password for the new user.
 
 ## Step Two: SSH Setup for New User
@@ -43,6 +47,7 @@
      - `-R`: Recursively copy the entire directory.
      - `/root/.ssh`: Source directory (root's SSH configuration).
      - `/home/[username]/`: Destination directory.
+       
      - **Purpose**: To copy SSH configuration from root to the new user.
 
 2. **Change ownership of the copied `.ssh` directory:**
@@ -55,6 +60,7 @@
      - `-R`: Apply the changes recursively to all files in the directory.
      - `[username]:[username]`: New owner and group for the files.
      - `/home/[username]/.ssh`: Target directory.
+       
      - **Purpose**: To ensure the new user owns the copied `.ssh` directory.
 
 ## Step Three: Test SSH Connection
@@ -67,6 +73,7 @@
      - `ssh`: Command to initiate a secure shell connection.
      - `-i [location]`: Specifies the private key file location for authentication.
      - `[username]@your_server_ip`: Connects as `[username]` to the server at `your_server_ip`.
+       
      - **Purpose**: To test the SSH connection with the new user.
 
 ## Step Four: Edit SSH Configuration to Disable Root Login
@@ -79,6 +86,7 @@
      - `sudo`: Executes the command with superuser privileges.
      - `vim`: Command to edit files using the Vim editor.
      - `/etc/ssh/sshd_config`: Path to the SSH daemon configuration file.
+       
      - **Purpose**: To modify SSH server settings.
 
 2. **Disable root login via SSH:**
