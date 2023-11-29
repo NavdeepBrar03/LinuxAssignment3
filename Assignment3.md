@@ -3,7 +3,8 @@
 1. **Create a new user with `sudo` privileges:**
    - To create a new user, use: ```bash
        useradd -ms /bin/bash [user-name]
-     ``` (replace `[username]` with your desired username).
+     ```
+     (replace `[username]` with your desired username).
    - Add this user to the `sudo` group for administrative privileges: ```bash sudo usermod -aG sudo [username]```.
 
 2. **Set a password for the new user:**
