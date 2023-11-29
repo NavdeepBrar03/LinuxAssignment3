@@ -248,4 +248,14 @@
    - **Purpose**: To apply the changes made to the Nginx configuration.
 
 
+4. **Verify Nginx Configuration**
+   - Before restarting the Nginx service, it's a good practice to check if the configuration file syntax is correct.
+   - Command:
+     ```bash
+     sudo nginx -t
+     ```
+   - `sudo`: Executes the command with superuser privileges.
+   - `nginx -t`: Tests the configuration files for syntax errors.
+   - **Purpose**: To ensure that there are no syntax errors in your Nginx configuration files.
+
 
