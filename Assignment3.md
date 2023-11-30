@@ -11,7 +11,7 @@
      - `-s /bin/bash`: Sets `/bin/bash` as the user's login shell.
      - `[username]`: Placeholder for the desired username.
      
-     - **Purpose**: To create a new user with a home directory and bash as their default shell.
+       ### Purpose: To create a new user with a home directory and bash as their default shell.
    
    - Add this user to the `sudo` group for administrative privileges:
      ```bash
@@ -23,7 +23,7 @@
      - `sudo`: Group name for granting admin privileges.
      - `[username]`: Placeholder for the username created earlier.
        
-     - **Purpose**: To give the new user administrative privileges.
+       ### Purpose: To give the new user administrative privileges.
 
 2. **Set a password for the new user:**
    - You will be prompted to set a password during the user creation process.
@@ -33,7 +33,7 @@
      - `passwd`: Command to set or change the user's password.
      - `[username]`: Placeholder for the username.
        
-     - **Purpose**: To securely set a password for the new user.
+     ### Purpose: To securely set a password for the new user.
 
 ## Step Two: SSH Setup for New User
 
@@ -48,7 +48,7 @@
      - `/root/.ssh`: Source directory (root's SSH configuration).
      - `/home/[username]/`: Destination directory.
        
-     - **Purpose**: To copy SSH configuration from root to the new user.
+     ### Purpose: To copy SSH configuration from root to the new user.
 
 2. **Change ownership of the copied `.ssh` directory:**
    - Change ownership with:
@@ -61,11 +61,19 @@
      - `[username]:[username]`: New owner and group for the files.
      - `/home/[username]/.ssh`: Target directory.
        
-     - **Purpose**: To ensure the new user owns the copied `.ssh` directory.
+     ### Purpose: To ensure the new user owns the copied `.ssh` directory.
 
 ## Step Three: Test SSH Connection
+1. **Log Out of the Current Session:**
+   - To log out of your current SSH or user session, simply type:
+     ```bash
+     exit
+     ```
+     - `exit`: Command to end the current session.
+     ### Purpose: To exit from the current user session, preparing to log in as the new user.
 
-1. **SSH into the server with the new user:**
+
+2. **SSH into the server with the new user:**
    - Use:
      ```bash
      ssh -i [location] [username]@your_server_ip
@@ -74,7 +82,7 @@
      - `-i [location]`: Specifies the private key file location for authentication.
      - `[username]@your_server_ip`: Connects as `[username]` to the server at `your_server_ip`.
        
-     - **Purpose**: To test the SSH connection with the new user.
+     ### Purpose: To test the SSH connection with the new user.
 
 ## Step Four: Edit SSH Configuration to Disable Root Login
 
@@ -87,7 +95,7 @@
      - `vim`: Command to edit files using the Vim editor.
      - `/etc/ssh/sshd_config`: Path to the SSH daemon configuration file.
        
-     - **Purpose**: To modify SSH server settings.
+     ### Purpose: To modify SSH server settings.
 
 2. **Disable root login via SSH:**
    - Change `PermitRootLogin yes` to `PermitRootLogin no`.
@@ -100,8 +108,25 @@
      ```
      - `sudo`: Executes the command with superuser privileges.
      - `systemctl restart sshd`: Command to restart the SSH daemon.
-     - **Purpose**: To apply the new SSH configuration settings.
+     ### Purpose: To apply the new SSH configuration settings.
 
+## Step Five: Verifying Root Login Restriction
+
+1. **Log Out of the Current Session:**
+   - To log out of your current SSH or user session, simply type:
+     ```bash
+     exit
+     ```
+     - `exit`: Command to end the current session.
+     ### Purpose: To exit from the current user session, preparing to log in as the new user.
+
+2. **Verify Root Login is Disabled:**
+   - Attempt to log in as the root user via SSH:
+     ```bash
+     ssh -i [location] root@your_server_ip
+     ```
+     - If root login is correctly disabled, this attempt should fail.
+     ### Purpose: To ensure that root login has been successfully restricted for increased security.
 
 
 # Installing and Configuring Nginx Server
@@ -117,7 +142,7 @@
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `apt update`: Updates the package list for the system.
-      - **Purpose**: To ensure the latest software and dependencies are available before installing Nginx.
+     ### Purpose: To ensure the latest software and dependencies are available before installing Nginx.
 
 2. **Install Nginx**
    - Command:
@@ -126,7 +151,7 @@
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `apt install nginx`: Installs the Nginx package.
-      - **Purpose**: To install Nginx as the web server on the system.
+     ### Purpose: To install Nginx as the web server on the system.
 
 ## Step Two: Configure Nginx
 
@@ -139,7 +164,7 @@
       - `sudo`: Executes the commands with superuser privileges.
       - `systemctl enable nginx`: Enables Nginx to start at boot.
       - `systemctl start nginx`: Starts the Nginx service.
-      - **Purpose**: To ensure Nginx runs automatically upon system boot and starts running immediately.
+     ### Purpose: To ensure Nginx runs automatically upon system boot and starts running immediately.
 
 2. **Navigate to Web Root**
    - Command:
@@ -147,7 +172,7 @@
      cd /var/www
      ```
       - `cd /var/www`: Changes the current directory to Nginx's web root.
-      - **Purpose**: To access the default directory where web files are stored.
+     ### Purpose: To access the default directory where web files are stored.
 
 3. **Create a New Directory**
    - Command:
@@ -157,7 +182,7 @@
       - `sudo`: Executes the command with superuser privileges.
       - `mkdir [dir]`: Creates a new directory.
       - Replace `[dir]` with your directory name.
-      - **Purpose**: To create a specific directory for your website's files.
+     ### Purpose: To create a specific directory for your website's files.
 
 ## Step Three: Add Web Content
 
@@ -170,7 +195,7 @@
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `vim index.html`: Opens the Vim editor to create or edit an `index.html` file.
-      - **Purpose**: To add custom web content, such as a homepage.
+     ### Purpose: To add custom web content, such as a homepage.
 
    **HTML Code to Copy:**
    ```html
@@ -210,7 +235,7 @@
       - `sudo`: Executes the command with superuser privileges.
       - Replace `[my-server]` with your file name.
       - `vim /etc/nginx/sites-available/[my-server]`: Opens the Vim editor to create or edit the server block configuration file.
-      - **Purpose**: To configure a server block for hosting websites.
+     ### Purpose: To configure a server block for hosting websites.
 
    **Server Block Sample Code:**
    Replace `[your dir]` with the directory name you created in `/var/www`.
@@ -242,7 +267,7 @@
       - `sudo`: Executes the commands with superuser privileges.
       - `ln -s`: Creates a symbolic link.
       - `unlink`: Removes the existing symbolic link.
-      - **Purpose**: To enable the new server block configuration and disable the default.
+     ### Purpose: To enable the new server block configuration and disable the default.
 
 3. **Reload or Restart Nginx**
    - Commands:
@@ -253,7 +278,7 @@
       - `sudo`: Executes the commands with superuser privileges.
       - `systemctl reload nginx`: Reloads Nginx to apply new configurations.
       - `systemctl restart nginx`: Restarts the Nginx service.
-      - **Purpose**: To apply the changes made to the Nginx configuration.
+     ### Purpose: To apply the changes made to the Nginx configuration.
 
 
 4. **Verify Nginx Configuration**
@@ -264,6 +289,6 @@
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `nginx -t`: Tests the configuration files for syntax errors.
-      - **Purpose**: To ensure that there are no syntax errors in your Nginx configuration files.
+     ### Purpose: To ensure that there are no syntax errors in your Nginx configuration files.
 
 
