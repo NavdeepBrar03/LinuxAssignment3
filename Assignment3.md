@@ -2,6 +2,7 @@
 ## Step One: Create a New User
 
 1. **Create a new user with `sudo` privileges:**
+    **Objective**: To create a new user with a home directory and bash as their default shell.
    - To create a new user, use:
      ```bash
      useradd -ms /bin/bash [username]
@@ -11,8 +12,8 @@
      - `-s /bin/bash`: Sets `/bin/bash` as the user's login shell.
      - `[username]`: Placeholder for the desired username.
      
-       ### Purpose: To create a new user with a home directory and bash as their default shell.
-   
+       
+     **Objective**: To give the new user administrative privileges.
    - Add this user to the `sudo` group for administrative privileges:
      ```bash
      sudo usermod -aG sudo [username]
@@ -23,9 +24,10 @@
      - `sudo`: Group name for granting admin privileges.
      - `[username]`: Placeholder for the username created earlier.
        
-       ### Purpose: To give the new user administrative privileges.
+        
 
 2. **Set a password for the new user:**
+    **Objective**: To securely set a password for the new user.
    - You will be prompted to set a password during the user creation process.
      ```bash
      passwd [username]
@@ -33,11 +35,12 @@
      - `passwd`: Command to set or change the user's password.
      - `[username]`: Placeholder for the username.
        
-     ### Purpose: To securely set a password for the new user.
+      
 
 ## Step Two: SSH Setup for New User
 
 1. **Copy `.ssh` directory from root to the new user's home directory:**
+    **Objective**: To copy SSH configuration from root to the new user.
    - Copy command:
      ```bash
      sudo cp -R /root/.ssh /home/[username]/
@@ -48,9 +51,10 @@
      - `/root/.ssh`: Source directory (root's SSH configuration).
      - `/home/[username]/`: Destination directory.
        
-     ### Purpose: To copy SSH configuration from root to the new user.
+      
 
 2. **Change ownership of the copied `.ssh` directory:**
+    **Objective**: To ensure the new user owns the copied `.ssh` directory.
    - Change ownership with:
      ```bash
      sudo chown -R [username]:[username] /home/[username]/.ssh
@@ -61,19 +65,21 @@
      - `[username]:[username]`: New owner and group for the files.
      - `/home/[username]/.ssh`: Target directory.
        
-     ### Purpose: To ensure the new user owns the copied `.ssh` directory.
+      
 
 ## Step Three: Test SSH Connection
 1. **Log Out of the Current Session:**
+    **Objective**: To exit from the current user session, preparing to log in as the new user.
    - To log out of your current SSH or user session, simply type:
      ```bash
      exit
      ```
      - `exit`: Command to end the current session.
-     ### Purpose: To exit from the current user session, preparing to log in as the new user.
+      
 
 
 2. **SSH into the server with the new user:**
+    **Objective**: To test the SSH connection with the new user.
    - Use:
      ```bash
      ssh -i [location] [username]@your_server_ip
@@ -82,11 +88,12 @@
      - `-i [location]`: Specifies the private key file location for authentication.
      - `[username]@your_server_ip`: Connects as `[username]` to the server at `your_server_ip`.
        
-     ### Purpose: To test the SSH connection with the new user.
+      
 
 ## Step Four: Edit SSH Configuration to Disable Root Login
 
 1. **Edit the SSH configuration file:**
+    **Objective**: To modify SSH server settings.
    - Open for editing:
      ```bash
      sudo vim /etc/ssh/sshd_config
@@ -95,38 +102,41 @@
      - `vim`: Command to edit files using the Vim editor.
      - `/etc/ssh/sshd_config`: Path to the SSH daemon configuration file.
        
-     ### Purpose: To modify SSH server settings.
+      
 
 2. **Disable root login via SSH:**
    - Change `PermitRootLogin yes` to `PermitRootLogin no`.
    - Uncomment the line if necessary by removing `#`.
 
 3. **Restart the SSH service:**
+    **Objective**: To apply the new SSH configuration settings.
    - Restart with:
      ```bash
      sudo systemctl restart sshd
      ```
      - `sudo`: Executes the command with superuser privileges.
      - `systemctl restart sshd`: Command to restart the SSH daemon.
-     ### Purpose: To apply the new SSH configuration settings.
+      
 
 ## Step Five: Verifying Root Login Restriction
 
 1. **Log Out of the Current Session:**
+    **Objective**: To exit from the current user session, preparing to log in as the new user.
    - To log out of your current SSH or user session, simply type:
      ```bash
      exit
      ```
      - `exit`: Command to end the current session.
-     ### Purpose: To exit from the current user session, preparing to log in as the new user.
+      
 
 2. **Verify Root Login is Disabled:**
+    **Objective**: To ensure that root login has been successfully restricted for increased security.
    - Attempt to log in as the root user via SSH:
      ```bash
      ssh -i [location] root@your_server_ip
      ```
      - If root login is correctly disabled, this attempt should fail.
-     ### Purpose: To ensure that root login has been successfully restricted for increased security.
+      
 
 
 # Installing and Configuring Nginx Server
@@ -136,26 +146,29 @@
 ## Step One: System Preparation
 
 1. **Update the System**
+     **Objective**: To ensure the latest software and dependencies are available before installing Nginx.
    - Command:
      ```bash
      sudo apt update
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `apt update`: Updates the package list for the system.
-     ### Purpose: To ensure the latest software and dependencies are available before installing Nginx.
+     
 
 2. **Install Nginx**
+    **Objective**: To install Nginx as the web server on the system.
    - Command:
      ```bash
      sudo apt install nginx
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `apt install nginx`: Installs the Nginx package.
-     ### Purpose: To install Nginx as the web server on the system.
+      
 
 ## Step Two: Configure Nginx
 
 1. **Enable and Start Nginx**
+    **Objective**: To ensure Nginx runs automatically upon system boot and starts running immediately.
    - Commands:
      ```bash
      sudo systemctl enable nginx
@@ -164,17 +177,19 @@
       - `sudo`: Executes the commands with superuser privileges.
       - `systemctl enable nginx`: Enables Nginx to start at boot.
       - `systemctl start nginx`: Starts the Nginx service.
-     ### Purpose: To ensure Nginx runs automatically upon system boot and starts running immediately.
+      
 
 2. **Navigate to Web Root**
+    **Objective**: To access the default directory where web files are stored.
    - Command:
      ```bash
      cd /var/www
      ```
       - `cd /var/www`: Changes the current directory to Nginx's web root.
-     ### Purpose: To access the default directory where web files are stored.
+      
 
 3. **Create a New Directory**
+    **Objective**: To create a specific directory for your website's files.
    - Command:
      ```bash
      sudo mkdir [dir]
@@ -182,11 +197,12 @@
       - `sudo`: Executes the command with superuser privileges.
       - `mkdir [dir]`: Creates a new directory.
       - Replace `[dir]` with your directory name.
-     ### Purpose: To create a specific directory for your website's files.
+      
 
 ## Step Three: Add Web Content
 
 1. **Create an HTML File**
+    **Objective**: To add custom web content, such as a homepage.
    Inside the directory you created in the earlier step, create an HTML file using the following command. This HTML file will display a simple "Hello, World" message.
 
    - Command:
@@ -195,7 +211,7 @@
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `vim index.html`: Opens the Vim editor to create or edit an `index.html` file.
-     ### Purpose: To add custom web content, such as a homepage.
+      
 
    **HTML Code to Copy:**
    ```html
@@ -226,6 +242,7 @@
 ## Step Four: Server Block Configuration
 
 1. **Creating a Custom Server Block**
+    **Objective**: To configure a server block for hosting websites.
    - Use this command to create and edit a new server block configuration file. This configuration tells Nginx how to handle incoming requests and serve your website.
 
    - Command:
@@ -235,8 +252,7 @@
       - `sudo`: Executes the command with superuser privileges.
       - Replace `[my-server]` with your file name.
       - `vim /etc/nginx/sites-available/[my-server]`: Opens the Vim editor to create or edit the server block configuration file.
-     ### Purpose: To configure a server block for hosting websites.
-
+      
    **Server Block Sample Code:**
    Replace `[your dir]` with the directory name you created in `/var/www`.
    ```nginx
@@ -259,6 +275,7 @@
 
 
 2. **Enable the Server Block**
+    **Objective**: To enable the new server block configuration and disable the default.
    - Commands:
      ```bash
      sudo ln -s /etc/nginx/sites-available/[my-server] /etc/nginx/sites-enabled/
@@ -267,9 +284,9 @@
       - `sudo`: Executes the commands with superuser privileges.
       - `ln -s`: Creates a symbolic link.
       - `unlink`: Removes the existing symbolic link.
-     ### Purpose: To enable the new server block configuration and disable the default.
-
+      
 3. **Reload or Restart Nginx**
+    **Objective**: To apply the changes made to the Nginx configuration.
    - Commands:
      ```bash
      sudo systemctl reload nginx
@@ -278,10 +295,11 @@
       - `sudo`: Executes the commands with superuser privileges.
       - `systemctl reload nginx`: Reloads Nginx to apply new configurations.
       - `systemctl restart nginx`: Restarts the Nginx service.
-     ### Purpose: To apply the changes made to the Nginx configuration.
+      
 
 
 4. **Verify Nginx Configuration**
+     **Objective**: To ensure that there are no syntax errors in your Nginx configuration files.
    - Before restarting the Nginx service, it's a good practice to check if the configuration file syntax is correct.
    - Command:
      ```bash
@@ -289,6 +307,6 @@
      ```
       - `sudo`: Executes the command with superuser privileges.
       - `nginx -t`: Tests the configuration files for syntax errors.
-     ### Purpose: To ensure that there are no syntax errors in your Nginx configuration files.
+     
 
 
