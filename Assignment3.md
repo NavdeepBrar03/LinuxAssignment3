@@ -209,7 +209,6 @@
      sudo systemctl enable nginx
      sudo systemctl start nginx
      ```
-      - `sudo`: Executes the commands with superuser privileges.
       - `systemctl enable nginx`: Enables Nginx to start at boot.
       - `systemctl start nginx`: Starts the Nginx service.
       
@@ -312,13 +311,12 @@
 
 2. **Enable the Server Block**
     
-    **Objective**: To enable the new server block configuration and disable the default.
+    **Objective**: To enable the new server block configuration by creating a symbolic link and disable the default.
    - Commands:
      ```bash
      sudo ln -s /etc/nginx/sites-available/[my-server] /etc/nginx/sites-enabled/
      sudo unlink /etc/nginx/sites-enabled/default
      ```
-      - `sudo`: Executes the commands with superuser privileges.
       - `ln -s`: Creates a symbolic link.
       - `unlink`: Removes the existing symbolic link.
       
@@ -330,7 +328,6 @@
      sudo systemctl reload nginx
      sudo systemctl restart nginx
      ```
-      - `sudo`: Executes the commands with superuser privileges.
       - `systemctl reload nginx`: Reloads Nginx to apply new configurations.
       - `systemctl restart nginx`: Restarts the Nginx service.
       
@@ -338,7 +335,7 @@
 
 4. **Verify Nginx Configuration**
      
-     **Objective**: To ensure that there are no syntax errors in your Nginx configuration files.
+     **Objective**: To ensure that there are no errors in your Nginx configuration files.
    - Before restarting the Nginx service, it's a good practice to check if the configuration file syntax is correct.
    - Command:
      ```bash
