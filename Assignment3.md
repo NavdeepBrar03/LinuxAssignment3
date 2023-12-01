@@ -1,3 +1,23 @@
+# Debian 12 Server Initialization on DigitalOcean
+
+**1. Droplet Setup Process**
+- **DigitalOcean Login:** Access your account on the DigitalOcean platform.
+- **Droplet Creation:** Click "Create" and select "Droplets".
+- **Image Selection:** Under "Choose an image," select "Debian" and opt for version 12.
+- **Plan Selection:** Opt for a suitable plan based on your project size.
+- **Datacenter Location:** Pick the nearest datacenter to your audience.
+- **SSH Key Setup:** Opt for SSH keys for security. Follow DigitalOcean's SSH key setup guide if necessary.
+- **Droplet Finalization:** Assign a name, decide on additional features, and initiate the creation.
+
+**2. Server Connection**
+- **SSH Connection:** Use SSH to connect to your server:
+- Use:
+     ```bash
+     ssh -i [location] root@your_server_ip
+     ```
+
+
+
 # Setting Up a User
 
 `sudo`: Executes the command with superuser privileges
