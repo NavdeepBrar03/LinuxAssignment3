@@ -1,4 +1,4 @@
-# Debian 12 Server Initialization on DigitalOcean
+# How  to create a Debian 12 Server on DigitalOcean
 
 **1. Droplet Setup Process**
 - **DigitalOcean Login:** Access your account on the DigitalOcean platform.
@@ -18,7 +18,7 @@
 
 
 
-# Setting Up a User
+# Adding a user to the system
 
 `sudo`: Executes the command with superuser privileges
 
@@ -49,7 +49,6 @@
      - `usermod`: Command to modify a user's settings.
      - `-aG`: Appends the user to the specified group.
      - `sudo`: Group name for granting admin privileges.
-     - `[username]`: Placeholder for the username created earlier.
        
         
 
@@ -61,7 +60,6 @@
      passwd [username]
      ```
      - `passwd`: Command to set or change the user's password.
-     - `[username]`: Placeholder for the username.
        
       
 
